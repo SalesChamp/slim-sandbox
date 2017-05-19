@@ -31,9 +31,7 @@
     <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
     <rule ref="Generic.PHP.LowerCaseConstant"/>
 
-    <file>./app</file>
-    <file>./tests</file>
-    <file>./www</file>
+    <file>./src</file>
 
     <arg name="encoding" value="utf8"/>
     <arg name="extensions" value="php,phpt"/>
