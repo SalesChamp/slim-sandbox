@@ -1,0 +1,8 @@
+displayErrorDetails: false
+addContentLengthHeader: false
+
+# monolog
+Monolog\Logger:
+    name: slim-app
+    path: php://stdout
+    level: debug

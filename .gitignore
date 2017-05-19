@@ -1,0 +1,4 @@
+/config/local.neon
+/vendor/
+/logs/*
+!/logs/README.md
