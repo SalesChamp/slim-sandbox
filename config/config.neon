@@ -5,4 +5,4 @@ addContentLengthHeader: false
 Monolog\Logger:
     name: slim-app
     path: php://stdout
-    level: debug
+    level: 100 #debug
