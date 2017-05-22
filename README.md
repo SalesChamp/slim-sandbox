@@ -50,6 +50,24 @@ To run the server inside docker, run
 
     docker-compose up -d
 
+## Nette Tester
+
+[Nette Tester](https://github.com/nette/tester/) is a lightweight alternative to [PHPUnit](https://phpunit.de/).
+
+Place your tests under `./tests/` followed by PSR-4 compatible directory structure, so a class `App\Controllers\Hello` goes into `./tests/App/Controllers/Hello.phpt`.
+
+Remember to `require_once __DIR__ .'/../bootstrap.php'` (add appropriate number of `../` to point to `./tests/bootstrap.php`) to enable autoloading of your classes.
+
+Tests should be under `Tests\` namespace followed by the namespace of the class being tested, so the test class `App\Controllers\HelloTest` goes under `Tests\App\Controllers` namespace.
+
+Run
+
+    composer tester
+
+to run the testsuite.
+
+If you need additional extensions to load during tests, add them to `./tests/php.ini` (`json` is included by default).
+
 ## PHPStan - PHP Static analysis
 
 [PHPStan](https://github.com/phpstan/phpstan) is a static code analysis tool.  It is already set up in the repo, to run the report use

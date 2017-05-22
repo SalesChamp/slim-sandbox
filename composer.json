@@ -9,7 +9,8 @@
         "php": ">=7.0.0",
         "slim/slim": "^3.1",
         "monolog/monolog": "^1.17",
-        "nette/neon": "^2.4"
+        "nette/neon": "^2.4",
+        "nette/tester": "^1.7"
     },
     "require-dev": {
         "phpstan/phpstan": "^0.7.0",
@@ -21,12 +22,18 @@
             "App\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "config": {
         "process-timeout" : 0
     },
     "scripts": {
         "start": "php -S 0.0.0.0:8080 -t public public/index.php",
         "phpstan": "phpstan analyze -l 7 -c tests/phpstan.neon src",
+        "tester": "tester -p php -c tests/php.ini tests",
         "phpcs": "phpcs src"
     }
 }
