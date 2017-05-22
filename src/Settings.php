@@ -23,7 +23,7 @@ class Settings
 		if (file_exists($localFile)) {
 			$local = $decoder->decode(file_get_contents($localFile));
 			if ($local) {
-				$config = array_merge_recursive($config, $local);
+				$config = array_replace_recursive($config, $local);
 			}
 		}
 
