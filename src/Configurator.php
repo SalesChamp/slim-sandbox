@@ -44,7 +44,8 @@ class Configurator
 			$settings = $c->get('settings')[Monolog\Logger::class];
 			$logger = new Monolog\Logger($settings['name']);
 			$logger->pushProcessor(new Monolog\Processor\UidProcessor());
-			$logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
+			$path = isset($_ENV['docker']) ? 'php://stderr' : __DIR__ . '/../logs/app.log';
+			$logger->pushHandler(new Monolog\Handler\StreamHandler($path, $settings['level']));
 			return $logger;
 		};
 

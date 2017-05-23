@@ -16,7 +16,7 @@ $settings = $container->get('settings');
 
 ## Logs
 
-Logs go to `stdout` if run from docker, otherwise they are stored in the `./logs` directory.
+Logs go to `php://stderr` (useful if run from docker, this is the default) or `./logs/app.log` otherwise.
 
 ## Public
 
