@@ -23,7 +23,7 @@ class Hello
 
 	public function getName(Request $request, Response $response, $args)
 	{
-		$this->logger->info("Slim-Skeleton '/' route");
+		$this->logger->info("Slim-Skeleton '/hello/' route");
 
 		return $response->withJson(['status' => "Hello {$args['name']}"]);
 	}
