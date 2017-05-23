@@ -40,15 +40,19 @@ Tests for the application are stored here.  Additional configuration for dev too
 
 ## Dev server
 
-To start the built-in dev server, run
+To start the built-in dev server on port `8080`, run
 
     composer start
 
+If you have `docker-compose` available, it is adviced to use the provided docker stack.
+
 ## Docker stack
 
-To run the server inside docker, run
+To run the stack with docker, run
 
     docker-compose up -d
+
+This boots the application itself running under `php-fpm` on port 9000 (internally) and an `nginx` front-end listening on `8080`.
 
 ## Nette Tester
 
