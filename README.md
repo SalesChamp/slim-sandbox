@@ -52,7 +52,7 @@ To run the stack with docker, run
 
     docker-compose up -d
 
-This boots the application itself running under `php-fpm` on port 9000 (internally) and an `nginx` front-end listening on `8080`.
+This boots the application itself running under `php-fpm` on port 9000 (internally) and an `nginx` front-end listening on `8080`.  Try to visit http://localhost:8080/hello/Alice to see if everything works.
 
 ## Nette Tester
 
