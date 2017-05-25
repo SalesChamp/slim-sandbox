@@ -4,7 +4,7 @@ Sandbox project with a reasonable [Slim3](https://www.slimframework.com/) setup.
 
 # Layout
 
-## Config
+## config
 
 Config is stored in the `./config` directory.
 
@@ -14,15 +14,15 @@ General config is loaded from `config.neon`.  Local settings can be placed in `l
 $settings = $container->get('settings');
 ```
 
-## Logs
+## logs
 
 Logs go to `php://stderr` (useful if run from docker, this is the default) or `./logs/app.log` otherwise.
 
-## Public
+## public
 
 The starting point of the application is `./public/index.php` file.  For a simple REST application with no UI nothing else is usually necessary to be added to the `./public` directory.
 
-## Src
+## src
 
 Holds the actual logic of the application.
 
@@ -32,9 +32,13 @@ Configure your routes in `Router.php` method `registerRoutes`.  It is adviced to
 
 Dependency Injection Container is configured in `Configurator` method `configureContainer`.  A good convention for naming of the services is to use the full qualified names of the classes, using the PHP `::class` operator.
 
-## Tests
+## tests
 
 Tests for the application are stored here.  Additional configuration for dev tools is also stored here.
+
+## www
+
+Contains the `nginx` setup as well as the `Dockerfile` used to build it into a production image.
 
 # Dev tools
 
@@ -48,11 +52,29 @@ If you have `docker-compose` available, it is adviced to use the provided docker
 
 ## Docker stack
 
-To run the stack with docker, run
+### Dev stack
+
+To run the dev stack, use
 
     docker-compose up -d
 
-This boots the application itself running under `php-fpm` on port 9000 (internally) and an `nginx` front-end listening on `8080`.  Try to visit http://localhost:8080/hello/Alice to see if everything works.
+This boots the application running using the php dev server on port 8080.  Try to visit http://localhost:8080/hello/Alice to see if everything works.  Local changes to the source files **will** be immediately visible because this setup mounts the `$PWD` into the image.
+
+### Production stack
+
+The production stack includes the app on a backend network (running via `php-fpm` on port `9000`) and an [nginx](https://www.nginx.com/) frontend listening on port `8080`.
+
+To run the production stack, use
+
+    docker-compose -f docker-compose.prod.yml up -d
+
+Remember that for the first time and after every change you need to rebuild the images.  The application is copied into the image so that it is deployable without requiring git, pulling in dependencies etc.  Therefore your local changes **will not** be visible in the production images until a rebuild.
+
+To build the images, run
+
+    docker-compose -f docker-compose.prod.yml build
+
+You might want to adjust the names of the images in the `docker-compose.prod.yml` file.
 
 ## Nette Tester
 

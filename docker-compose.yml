@@ -1,23 +1,20 @@
 version: '2'
 
-volumes:
-  logs:
-    driver: local
-
 services:
   app:
     image: saleschamp/php
-    working_dir: /var/www/public
-    command: php-fpm
+    working_dir: /var/www
+    command: php -S 0.0.0.0:8080 -t public public/index.php
     environment:
-      docker: "true"
+      - docker=true
+      # Put the definition in .env file
+      - COMPOSER_AUTH
+    ports:
+      - 8080:8080
     volumes:
       - .:/var/www
       - logs:/var/www/logs
 
-  www:
-    image: nginx:1.13
-    volumes:
-      - ./www/nginx.conf:/etc/nginx/nginx.conf
-    ports:
-      - 8080:80
+volumes:
+  logs:
+    driver: local

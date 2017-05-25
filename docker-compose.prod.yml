@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+  app:
+    image: slim-app:latest # pick your desired name
+    build:
+      context: .
+      args:
+        COMPOSER_AUTH: "$COMPOSER_AUTH"
+    environment:
+      - docker=true
+      - COMPOSER_AUTH
+    volumes:
+      - ./config/local.neon:/srv/config/local.neon
+    networks:
+      - back-tier
+
+  www:
+    image: slim-www:latest # pick your desired name
+    build: ./www
+    ports:
+      - 8080:80
+    networks:
+      - front-tier
+      - back-tier
+
+networks:
+  back-tier: {}
+  front-tier: {}
