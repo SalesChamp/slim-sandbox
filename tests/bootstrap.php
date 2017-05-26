@@ -1,5 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../src/bootstrap.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 Tester\Environment::setup();
