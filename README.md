@@ -58,7 +58,7 @@ To run the dev stack, use
 
     docker-compose up -d
 
-This boots the application running using the php dev server on port 8080.  Try to visit http://localhost:8080/hello/Alice to see if everything works.  Local changes to the source files **will** be immediately visible because this setup mounts the `$PWD` into the image.
+This boots the application running using the php dev server on port 8080.  Try to visit http://localhost:8080/hello/Alice to see if everything works.  Local changes to the source files **will** be immediately visible because this setup mounts the `$PWD` into the image.  The path in the image is the same as on the host so that static analysis tools don't have problems with path translations if you execute them from the host.
 
 ### Production stack
 

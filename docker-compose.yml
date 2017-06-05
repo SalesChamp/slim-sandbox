@@ -3,7 +3,7 @@ version: '2'
 services:
   app:
     image: saleschamp/php
-    working_dir: /var/www
+    working_dir: ${PWD}
     command: php -S 0.0.0.0:8080 -t public public/index.php
     environment:
       - docker=true
@@ -12,8 +12,8 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - .:/var/www
-      - logs:/var/www/logs
+      - .:${PWD}
+      - logs:${PWD}/logs
 
 volumes:
   logs:
